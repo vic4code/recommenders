@@ -178,6 +178,31 @@ def check_nn_config(f_config):
             "data_format",
             "dropout",
         ]
+    elif f_config["model_type"] in ["fastformer", "FASTFORMER"]:
+        required_parameters = [
+            "title_size",
+            "his_size",
+            "wordEmb_file",
+            "wordDict_file",
+            "userDict_file",
+            "npratio",
+            "data_format",
+            "word_emb_dim",
+            # fastformer
+            "hidden_size",
+            "hidden_dropout_prob",
+            "num_hidden_layers",
+            "hidden_act",
+            "num_attention_heads",
+            "intermediate_size",
+            "max_position_embeddings",
+            "type_vocab_size",
+            "vocab_size",
+            "layer_norm_eps",
+            "initializer_range",
+            "pooler_type",
+            "enable_fp16",
+        ]
     else:
         required_parameters = []
 
@@ -232,6 +257,20 @@ def create_hparams(flags):
         "type": "ini",
         # npa
         "user_emb_dim": 50,
+        # fasformer
+        "hidden_size": 256,
+        "hidden_dropout_prob": 0.2,
+        "num_hidden_layers": 2,
+        "hidden_act": "gelu",
+        "num_attention_heads": 16,
+        "intermediate_size": 256,
+        "max_position_embeddings": 256,
+        "type_vocab_size": 2,
+        "vocab_size": 100000,
+        "layer_norm_eps": 1e-12,
+        "initializer_range": 0.02,
+        "pooler_type": "weightpooler",
+        "enable_fp16": "False",
         # train
         "learning_rate": 0.001,
         "optimizer": "adam",

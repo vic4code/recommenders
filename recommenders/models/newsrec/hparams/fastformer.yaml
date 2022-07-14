@@ -1,0 +1,39 @@
+data:
+  title_size: 10
+  his_size: 50  
+  data_format: news
+  npratio: 4
+  
+info:
+  metrics:
+  - group_auc
+  - mean_mrr
+  - ndcg@5;10
+  - f1
+  show_step: 100000
+  
+model:
+  vocab_size: 100000
+  word_emb_dim: 256
+  hidden_size: 256
+  hidden_dropout_prob: 0.2
+  num_hidden_layers: 2
+  hidden_act: gelu
+  num_attention_heads: 16
+  intermediate_size: 256
+  max_position_embeddings: 256
+  type_vocab_size: 2
+  layer_norm_eps: 1.0e-12
+  initializer_range: 0.02
+  pooler_type: weightpooler
+  enable_fp16: False
+  output_size: 4
+  model_type: fastformer
+
+train:
+  batch_size: 32
+  epochs: 10
+  learning_rate: 0.0001
+  loss: cross_entropy_loss
+  optimizer: adam
+  support_quick_scoring: false
